@@ -1,9 +1,9 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 
-public class contactUs {
+public class ContactUs {
 
     @FindBy(xpath = "//*[@class='col-sm-12']//*[@class='title text-center']")
     public static WebElement contactUs_placeholder;
@@ -35,6 +35,8 @@ public class contactUs {
     @FindBy (xpath = "//*[@class='contact-info']//address")
     public static WebElement getContactUs_getFeedback_email_content;
 
-    
+    public ContactUs(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
 }

@@ -1,10 +1,9 @@
 package pages;
 
-import base.BaseTest;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 
-public class home extends BaseTest {
+public class Home {
 
     @FindBy(xpath = "//*[@class='nav navbar-nav']/li[1]")
     public static WebElement Home_button;
@@ -94,6 +93,8 @@ public class home extends BaseTest {
     public static WebElement Kids_subcategory_dropdown;
 
 
-
+    public Home(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
 }

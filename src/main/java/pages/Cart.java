@@ -1,11 +1,12 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
+
 
 import java.util.List;
 
-public class cart {
+public class Cart {
 
     @FindBy(id = "empty_cart")
     public static WebElement emptyCartMessage;
@@ -59,8 +60,8 @@ public class cart {
     public static WebElement delivery_address;
 
 
-
-
-
+    public Cart(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
 }

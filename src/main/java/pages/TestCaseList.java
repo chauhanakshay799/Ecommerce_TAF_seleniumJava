@@ -1,11 +1,11 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 
 import java.util.List;
 
-public class testCaseList {
+public class TestCaseList {
 
     @FindBy(xpath = "//div[@class='panel-heading']//a")
     public WebElement testCaseTitle;
@@ -22,4 +22,7 @@ public class testCaseList {
     @FindBy (id = "feedback")
     public static WebElement feedback_textTable;
 
+    public TestCaseList(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 }

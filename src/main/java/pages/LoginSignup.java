@@ -1,9 +1,9 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 
-public class loginSignup {
+public class LoginSignup {
 
 
     @FindBy(xpath = "//div[contains(@class, 'login-form')]//h2")
@@ -33,6 +33,8 @@ public class loginSignup {
     @FindBy(xpath = "//*[@class=\"nav navbar-nav\"]/li[10]")
     public static WebElement loggedin_user_name;
 
-
+    public LoginSignup(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
 }

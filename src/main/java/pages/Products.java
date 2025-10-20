@@ -1,12 +1,11 @@
 package pages;
 
-import base.BaseTest;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 
 import java.util.List;
 
-public class products extends BaseTest {
+public class Products {
 
     @FindBy(id = "sale_image")
     public static WebElement Sale_image;
@@ -56,6 +55,8 @@ public class products extends BaseTest {
     @FindBy (css = ".btn.btn-success.close-modal.btn-block\n")
     public static WebElement AddToCart_success_popup_continueShopping;
 
-
+    public Products(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
 }
