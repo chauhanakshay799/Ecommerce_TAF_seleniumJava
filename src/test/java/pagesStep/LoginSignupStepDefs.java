@@ -28,7 +28,7 @@ public class LoginSignupStepDefs extends LoginSignup{
             login_link.click();
     }
 
-    @And("Verify {} is visible")
+    @And("Verify 'New User Signup!' is visible")
     public void verify_is_visible(String title) {
         Assert.assertEquals(signup_box_title.getText(), title);
     }
@@ -156,9 +156,48 @@ public class LoginSignupStepDefs extends LoginSignup{
             login_password_box.sendKeys(password);
     }
 
+    @And("Enter incorrect email address {} and password {}")
+    public void enter_email_address_and_password_wrong(String email, String password) {
+        enter_name_and_email_address(email, password);
+    }
+
     @And("Click 'login' button")
     public void click_login_button() {
         login_button.click();
     }
+
+    @And("Verify error 'Your email or password is incorrect!' is visible")
+    public void verify_error_your_email_or_password_is_incorrect() {
+        Assert.assertTrue(login_form_error_message.getText().trim().equalsIgnoreCase("Your email or password is incorrect!"));
+    }
+
+    @And("Click 'Logout' button")
+    public void click_logout_button() {
+        logout_button.click();
+    }
+
+    @And("Verify that user is navigated to login page")
+    public void verify_user_navigated_to_login_page() {
+        assert driver != null;
+        Assert.assertTrue("https://www.automationexercise.com/login".equalsIgnoreCase(driver.getCurrentUrl()));
+    }
+
+    @And("Verify 'New User Signup!' is visible")
+        public void verify_new_user_signup_is_visible() {
+    }
+
+    @And("Enter name {} and already registered email address {}")
+    public void enter_name_and_already_registered_email_address(String name, String email) {
+        signup_name_box.sendKeys(name);
+        signup_email_box.sendKeys(email);
+    }
+
+    @And("Verify error 'Email Address already exist!' is visible")
+    public void verify_error_email_address_already_exist() {
+        Assert.assertTrue(signup_form_error_message.getText().trim().equalsIgnoreCase("Email Address already exist!"));
+    }
+
+
+
 
 }

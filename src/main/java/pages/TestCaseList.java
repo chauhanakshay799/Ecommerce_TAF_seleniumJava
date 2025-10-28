@@ -7,6 +7,9 @@ import java.util.List;
 
 public class TestCaseList {
 
+    @FindBy(xpath = "//*[@class='nav navbar-nav']/li[5]")
+    public static WebElement testCase_page_button;
+
     @FindBy(xpath = "//div[@class='panel-heading']//a")
     public WebElement testCaseTitle;
 

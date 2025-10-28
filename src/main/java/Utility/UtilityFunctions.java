@@ -1,18 +1,25 @@
 package Utility;
 
+import org.apache.logging.log4j.LogManager;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
+
 
 public class UtilityFunctions {
 
     WebDriver driver;
     public JavascriptExecutor js;
+    private static final Logger logger = LogManager.getLogger(UtilityFunctions.class);
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
 
 
     public UtilityFunctions(WebDriver driver) {
@@ -37,7 +44,6 @@ public class UtilityFunctions {
     }
 
     public void pageLoadedFull() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         wait.until(webDriver ->
@@ -45,4 +51,15 @@ public class UtilityFunctions {
         );
     }
 
+    public void acceptAlertBox() {
+        try {
+            logger.debug("Waiting for alert to appear...");
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+            logger.info("Alert found with message: {}", alert.getText());
+            alert.accept();
+            logger.info("Alert accepted successfully.");
+        } catch (Exception e) {
+            logger.warn("No alert present or error while accepting alert.", e);
+        }
+    }
 }

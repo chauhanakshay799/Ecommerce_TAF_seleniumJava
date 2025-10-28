@@ -119,8 +119,11 @@ public class LoginSignup {
     @FindBy(xpath = "//div[@class='login-form']/h2")
     public  WebElement login_form_title;
 
-    @FindBy(xpath = "//input[@data-qa='login-email']")
-    public  WebElement login_email_box;
+    @FindBy(xpath = "//div[@class = 'login-form']/form/p")
+    public  WebElement login_form_error_message;
+
+    @FindBy(xpath = "//div[@class = 'signup-form']/form/p")
+    public  WebElement signup_form_error_message;
 
     public LoginSignup(WebDriver driver) {
         PageFactory.initElements(driver, this);

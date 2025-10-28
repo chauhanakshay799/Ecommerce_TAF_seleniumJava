@@ -5,8 +5,14 @@ import org.openqa.selenium.support.*;
 
 public class ContactUs {
 
+    @FindBy (xpath = "//*[@class='nav navbar-nav']/li[8]")
+    public static WebElement contact_us_link;
+
     @FindBy(xpath = "//*[@class='col-sm-12']//*[@class='title text-center']")
     public static WebElement contactUs_placeholder;
+
+    @FindBy(css = ".btn.btn-success")
+    public static WebElement contactUs_homeButton_messagesent;
 
     @FindBy (xpath = "//input[@name='name']")
     public static WebElement contactUs_name;
@@ -16,6 +22,9 @@ public class ContactUs {
 
     @FindBy (xpath = "//input[@name='subject']")
     public static WebElement contactUs_subject;
+
+    @FindBy (id = "message")
+    public static WebElement contactus_message;
 
     @FindBy (xpath = "//input[@name='upload_file']")
     public static WebElement contactUs_pdf_upload;
@@ -31,6 +40,9 @@ public class ContactUs {
 
     @FindBy (xpath = "//*[@class='contact-info']//*[@class='title text-center']")
     public static WebElement contactUs_getFeedback_email;
+
+    @FindBy (css = ".status.alert.alert-success")
+    public static WebElement contactUs_message_sent_info;
 
     @FindBy (xpath = "//*[@class='contact-info']//address")
     public static WebElement getContactUs_getFeedback_email_content;
