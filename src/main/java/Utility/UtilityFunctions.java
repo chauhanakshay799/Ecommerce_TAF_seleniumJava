@@ -1,10 +1,8 @@
 package Utility;
 
 import org.apache.logging.log4j.LogManager;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -44,11 +42,30 @@ public class UtilityFunctions {
     }
 
     public void pageLoadedFull() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        wait.until(webDriver ->
-                js.executeScript("return document.readyState").toString().equals("complete")
-        );
+        try {
+            wait.until(webDriver ->
+                    js.executeScript("return document.readyState").toString().equals("complete")
+            );
+            wait.until(webDriver ->
+                    (Boolean) js.executeScript(
+                            "return (window.jQuery == null) || (jQuery.active === 0);"
+                    )
+            );
+            wait.until(webDriver ->
+                    (Boolean) js.executeScript(
+                            "return !(window.getAllAngularTestabilities) || " +
+                                    "window.getAllAngularTestabilities().every(x => x.isStable());"
+                    )
+            );
+
+            Thread.sleep(1000);
+            logger.info("✅ Page fully loaded and stable.");
+        } catch (Exception e) {
+            logger.error("❌ Page load wait failed or timed out.", e);
+        }
     }
 
     public void acceptAlertBox() {
@@ -61,5 +78,9 @@ public class UtilityFunctions {
         } catch (Exception e) {
             logger.warn("No alert present or error while accepting alert.", e);
         }
+    }
+
+    public void hoverAction (WebElement element) {
+        new Actions(driver).moveToElement(element).perform();
     }
 }

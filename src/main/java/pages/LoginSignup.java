@@ -6,7 +6,7 @@ import org.openqa.selenium.support.*;
 public class LoginSignup {
 
     @FindBy(xpath = "//*[@data-qa='signup-button']")
-    public  static WebElement signup_button;
+    public  WebElement signup_button;
 
     @FindBy(xpath = "//*[@data-qa=\"login-email\"]")
     public  WebElement login_email_box;
@@ -124,6 +124,12 @@ public class LoginSignup {
 
     @FindBy(xpath = "//div[@class = 'signup-form']/form/p")
     public  WebElement signup_form_error_message;
+
+    @FindBy (xpath = "//*[@data-qa='account-created']")
+    public  WebElement account_created;
+
+    @FindBy (xpath = "//*[@data-qa='continue-button']")
+    public  WebElement continue_account_created;
 
     public LoginSignup(WebDriver driver) {
         PageFactory.initElements(driver, this);

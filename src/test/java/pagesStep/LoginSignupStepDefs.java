@@ -51,7 +51,7 @@ public class LoginSignupStepDefs extends LoginSignup{
     }
 
     @And("Fill details: Title, Name, Email, Password, Date of birth")
-    public void fill_details_title(String title, String name, String email, String password, String date_of_birth) {
+    public void fill_details_title(String name, String email, String password, String date_of_birth) {
         genderMale.click();
         custName.sendKeys(name);
         custEmailAddress.sendKeys(email);
